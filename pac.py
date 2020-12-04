@@ -319,8 +319,8 @@ class PacPool2dFn(Function):
         ctx.dilation = _pair(dilation)
         ctx.padding = _pair(padding)
         ctx.stride = _pair(stride)
-        ctx.save_for_backward(input if ctx.needs_input_grad[1] else None,
-                              kernel if ctx.needs_input_grad[0] else None)
+        ctx.save_for_backward(input if ctx.needs_input_grad[0] else None,
+                              kernel if ctx.needs_input_grad[1] else None)
         ctx._backend = type2backend[input.type()]
 
         cols = F.unfold(input, ctx.kernel_size, ctx.dilation, ctx.padding, ctx.stride)
